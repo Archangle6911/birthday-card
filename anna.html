@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Flash Cards – For Anna</title>
+  <style>
+    :root{
+      --bg-1: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+      --bg-2: linear-gradient(135deg,#283c86,#45a247);
+      --bg-3: linear-gradient(135deg,#42275a,#734b6d);
+      --bg-4: linear-gradient(135deg,#000428,#004e92);
+      --bg-5: linear-gradient(135deg,#5f2c82,#49a09d);
+      --bg-6: linear-gradient(135deg,#141e30,#243b55);
+      --bg-7: linear-gradient(135deg,#2b5876,#4e4376);
+      --bg-8: linear-gradient(135deg,#1d2b64,#f8cdda);
+      --bg-9: linear-gradient(135deg,#c31432,#240b36);
+      --bg-10: linear-gradient(135deg,#373b44,#4286f4);
+      --glass: rgba(255,255,255,.08);
+      --text: #f6f7fb;
+      --muted: #cdd2e0;
+      --accent: #ffd166;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0e17;color:var(--text)}
+    .stage{min-height:100%;display:grid;place-items:center;position:relative;overflow:hidden}
+
+    .orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.35;animation:float 18s ease-in-out infinite alternate}
+    .orb.one{width:40vmax;height:40vmax;background:#7f5af0;left:-10vmax;top:-8vmax}
+    .orb.two{width:45vmax;height:45vmax;background:#00d1b2;right:-12vmax;bottom:-10vmax;animation-duration:22s}
+    @keyframes float{to{transform:translate3d(6vw, -5vh, 0) scale(1.08);opacity:.5}}
+
+    .shell{width:min(600px,90vw);padding:24px}
+
+    .card{
+      position:relative;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,.4);
+      width:100%;
+      height:500px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .card__header{
+      padding:10px 20px;
+      display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0));
+    }
+    .badge{font-size:.85rem;color:var(--muted)}
+    .progress{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;width:42%;}
+    .progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd166,#ef476f);transition:width .5s ease}
+
+    .slide{
+      flex:1;
+      display:grid;place-items:center;
+      padding:40px 30px;
+      background: var(--bg-1);
+      transition: background 600ms ease;
+    }
+
+    .quote{
+      font-size: 1.6rem;
+      line-height:1.6;
+      letter-spacing:.2px;
+      text-align:center;
+      max-width: 90%;
+      margin:0;
+      animation:fadeIn .5s ease;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+    .controls{display:flex;gap:12px;justify-content:center;align-items:center;padding:10px 20px 15px;flex-wrap:wrap;}
+    .btn{appearance:none;border:0;cursor:pointer;padding:10px 14px;border-radius:8px;background:#161a27;color:var(--text);border:1px solid rgba(255,255,255,.12);transition:transform .08s ease, background .2s ease, border .2s ease;font-size:.9rem;}
+    .btn:hover{background:#1b2132}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:#2a2f45;border-color:#3b4361}
+    .btn.accent{background:#2a2f45;border-color:#ffd166;color:#ffd166}
+
+    .hint{font-size:.85rem;color:var(--muted);text-align:center;margin:6px 0 10px}
+
+    .footer{padding:10px 20px;color:var(--muted);text-align:center;font-size:.85rem}
+
+    .header-title{ text-align:center; font-size:1.8rem; margin-bottom:10px; color:var(--accent); }
+    .created{ text-align:center; font-size:0.9rem; color:var(--muted); margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <div class="shell">
+      <h1 class="header-title">Happy Birthday Anna 🎉</h1>
+      <div class="card">
+        <div class="card__header">
+          <div class="badge" id="counter">Card 1 / 10</div>
+          <div class="progress"><span id="bar"></span></div>
+        </div>
+
+        <div class="slide" id="slide">
+          <p class="quote" id="quote"></p>
+        </div>
+
+        <div class="controls">
+          <button class="btn" id="prev">◀ Prev</button>
+          <button class="btn primary" id="shuffle">Shuffle</button>
+          <button class="btn accent" id="next">Next ▶</button>
+        </div>
+        <div class="hint">Press ← / → to navigate. “Shuffle” for random order.</div>
+      </div>
+      <div class="created">Created by Hayzer (Ali)</div>
+    </div>
+  </div>
+
+  <script src="anna.js">
+  </script>
+</body>
+</html>
